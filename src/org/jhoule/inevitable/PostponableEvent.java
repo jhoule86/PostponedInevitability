@@ -1,12 +1,12 @@
 package org.jhoule.inevitable;
 
+import java.util.Calendar;
 import java.util.Collection;
-import java.util.Date;
 
-public class PostponableEvent extends RunningEvent {
+public abstract class PostponableEvent extends RunningEvent {
 
-    Date lastRun = null;
-    Date nextRun = null;
+    Calendar lastRun = null;
+    Calendar nextRun = null;
 
     @Override
     protected boolean setup() {
@@ -14,17 +14,12 @@ public class PostponableEvent extends RunningEvent {
     }
 
     @Override
-    public boolean perform() {
-        return true;
-    }
-
-    @Override
-    public Date getLastOccurence() {
+    public Calendar getLastOccurence() {
         return lastRun;
     }
 
     @Override
-    public Date getNextDue() {
+    public Calendar getNextDue() {
         return nextRun;
     }
 

@@ -33,7 +33,14 @@ public abstract class RunningEvent implements IPostponableRunningEvent {
             if (nd.after(now))
             {
                 long w = now.getTimeInMillis() - nd.getTimeInMillis();
-                mThread.sleep(w);
+                try
+                {
+                    mThread.sleep(w);
+                }
+                catch (Exception e)
+                {
+                    System.err.println("Oh oh I woke up");
+                }
             }
 
             Collection<IPostponement> pps = getPostponements();
@@ -62,8 +69,8 @@ public abstract class RunningEvent implements IPostponableRunningEvent {
                        continue;
                    }
 
-                   skip = answer == PostponementResponse.SKIP;
-                   if(skip)
+                   skipPerform = answer == PostponementResponse.SKIP;
+                   if(skipPerform)
                    {
                        // don't perform any actions.
                        // don't ask anymore questions.
@@ -79,7 +86,7 @@ public abstract class RunningEvent implements IPostponableRunningEvent {
                    if (answer instanceof CustomPostponementResponse)
                    {
                        CustomPostponementResponse r = ((CustomPostponementResponse) answer);
-                       skip = r.avoidRegularActions();
+                       skipPerform = r.avoidRegularActions();
 
                        // user gave us a new timeframe
                        Long ci = ((CustomPostponementResponse) answer).getCustomInterval();
@@ -105,7 +112,14 @@ public abstract class RunningEvent implements IPostponableRunningEvent {
             if (postponmentInterval != null && postponmentInterval > 0)
             {
                 // we've been told to wait.
-                mThread.wait(postponmentInterval);
+                try
+                {
+                    mThread.wait(postponmentInterval);
+                }
+                catch (Exception e)
+                {
+                    System.err.println("I didn't get to wait long enough");
+                }
             }
 
             if (prefix != null)
