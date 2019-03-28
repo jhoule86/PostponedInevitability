@@ -1,6 +1,7 @@
 Postponed Inevitability
 
-The POC for this project is a "custom sleep timer" that wants to do something but lets users delay or cancel the action.
+The idea for this project is a "custom sleep timer" that wants to do something but lets users delay or cancel the action.
+
 I'm currently manually running executable jars for some tasks, and I could schedule those runs, but I want to make something more robust.
 I'm aware that I can solve this with a combination of prexisting products, but that's not my goal.
 This is an exploratory project intended to involve topics such as these:
