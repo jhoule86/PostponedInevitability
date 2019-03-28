@@ -9,6 +9,7 @@ This is an exploratory project intended to involve topics such as these:
 * Custom user interactions
 * Email: SMTP, IMAP
 * OAuth for java mail
+* Push messages on mobile?
 
 Some things to do for a POC are:
 1. Create an Action of "turn off TV" (using my TV remote framework)
